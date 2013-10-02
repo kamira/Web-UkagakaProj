@@ -1,6 +1,6 @@
  //<![CDATA[ 
-var key="0AvMyOkgICwgBdFZ2ZUlPaFpxekJBcTRacWFwd3JjQmc";
-var formkey='dFZ2ZUlPaFpxekJBcTRacWFwd3JjQmc6MQ';
+var key="Key";
+var formkey='google Formkey';
 var sheet="od6";
     
 var talking = [];
