@@ -1,7 +1,7 @@
-#Web-Ukagaka Proj.
-It is a sample. Maybe won't update in future.
+# Web-Ukagaka Proj #
 
-##Update
-- 20 Nov 2012 Learn word
-- 21 Nov 2012 Ban some tag
-- 25 Dec 2012 Draggable
+[Demo](!http://morris821028.github.io/2014/04/13/jquery-ukagaka/)
+
+## Update ##
+
+2014/04/13
