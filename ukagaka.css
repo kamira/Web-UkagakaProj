@@ -1,0 +1,74 @@
+#ukagaka_controlpanel {
+    background:white;padding:8px;
+    box-shadow:#555 0px 0px 4px;
+    text-shadow: #555 0px 0px 1px;
+    margin-bottom:-3px;
+    border-radius:5px 5px 0 0;
+    position:fixed;
+    right:40px;
+    bottom:0px;
+    font-size:10pt;
+    z-index:101;
+}
+
+#ukagaka_controlpanel span, #ukagaka_panel span {
+    padding:5px;
+    cursor:pointer;
+    height:0px;
+}
+#ukagaka_panel {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    width: 88.2px;
+    height: 230.3px;
+    z-index:10;
+}
+/* ukagaka msgbox */
+.ukagaka_box{
+    position: absolute;
+    bottom: 117px;
+    right: 97px;
+    font-size: 10pt;
+}
+.ukagaka_msg{
+    width:195px;
+    background: white;
+    padding:10px;
+    word-wrap: break-word;
+    word-break: normal;
+    color:black;
+    box-shadow:rgba(15,15,15,0.8) 0px 0px 8px;
+}
+.ukagaka_msg::after {
+    width:10px;
+    height:10px;
+    -moz-transform:rotate(45deg);
+    -webkit-transform:rotate(45deg);
+    -o-transform:rotate(45deg);
+    -ms-transform:rotate(45deg);
+    transform:rotate(45deg);
+    background:white;
+    content: '';
+    float: right;
+    margin-right: -14px;
+    margin-top:7px;
+    box-shadow:rgba(15,15,15,0.8) 3px -3px 8px -3px;
+}
+/*    */
+#ukagaka_img {
+    background: url(./img/ukagaka_img.png) no-repeat;
+    width: 126px;
+    height: 329px;
+    transform: scale(0.7);
+    -ms-transform: scale(0.7);
+    -webkit-transform: scale(0.7);
+    -o-transform: scale(0.7);
+    -moz-transform: scale(0.7);
+    position: absolute;
+    top: -49px;
+    right: -19px;
+}
+#ukagaka_stringinput input {
+    width:95%;
+}
