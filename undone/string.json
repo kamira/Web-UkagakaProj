@@ -1,0 +1,62 @@
+var str_json = {
+	//繁體中文字串
+	"tw" : {
+		"menu" : {
+		  "title" : "選單",
+		  "Master" : 1,
+		  "contain" : ["歡迎使用選單功能"]
+		},
+		
+		"lear" : {
+		  "title" : "學習",
+		  "Master" : 0,
+		  "contain" : ["請輸入想讓偽春菜學習的句子",
+		               "<input id='ukagaka_addstring' type='text'/>"]
+		},
+		
+		"upda" : {
+		  "title" : "更新",
+		  "Master" : 0,
+		  "contain" : ["更新日誌",
+		               "12/12/25 偽春菜 Draggable",
+		               "12/11/21 禁止部分 Tag",
+		               "12/11/20 偽春菜學習 Mode On",
+		               "00/00/00 籌備中"]
+		},
+		"exit"  : {
+		  "title" : "結束",
+		  "Master" : 1,
+		  "contain" : []
+		}
+	},
+	//英文字串
+	"en" : {
+	  "menu" : {
+		  "title" : "Menus",
+		  "Master" : 1,
+		  "contain" : ["Hello! World! Welcome to use menu."]
+		},
+		
+		"lear" : {
+		  "title" : "Learn",
+		  "Master" : 0,
+		  "contain" : ["Please enter what you want me to learn sentence",
+		               "<input id='ukagaka_addstring' type='text'/>"]
+		},
+		
+		"upda" : {
+		  "title" : "Update",
+		  "Master" : 0,
+		  "contain" : ["Update",
+		               "12/12/25 Draggable",
+		               "12/11/21 Some HTML Tag Disabled",
+		               "12/11/20 Learn Mode On",
+		               "00/00/00 Ready"]
+		},
+		"exit"  : {
+		  "title" : "Exit",
+		  "Master" : 1,
+		  "contain" : []
+		}
+	}
+}
