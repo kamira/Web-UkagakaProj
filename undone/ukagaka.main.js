@@ -26,13 +26,6 @@
 					inputid = options.GFF;
 				var TalkList = [];
 				
-				function ImportJS(src){
-					var Cscript=document.createElement('script').setAttribute("type","text/javascript").setAttribute("src", src);
-					
-					document.getElementsByTagName("head")[0].appendChild(Cscript);
-
-				}
-				
 				function GetDataFromGoogleVisualization(pkey, target_col){
 					var query = new google.visualization.Query('//spreadsheets.google.com/tq?key='+ pkey +'&range='+ target_col);
 					query.send(function(response){
@@ -51,7 +44,23 @@
 				
 				function SetListener(){};
 				
-				function StringAdder(){};
+				function StringAdder(str){
+					var sendData = {};
+					sendData[inputid] = str;
+					
+					$.ajax({
+						type: 'POST',
+						url: 'https://docs.google.com/forms/d/' + formkey + '/formResponse',
+						data: sendData,
+						dataType: "xml",
+						statusCode: {
+							0: function() {
+							}
+							200: function() {
+							}
+						}
+					});
+				};
 				
 				function ChangeMenu(){};
 				
@@ -61,6 +70,9 @@
 					LoadGoogleApi.setAttribute("src", '//www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}');
 					
 					document.getElementsByTagName("head")[0].appendChild(LoadGoogleApi);
+					
+					GetDataFromGoogleVisualization(GSK,'B');
+					CreatControlPanel();
 				};
 				
 				
