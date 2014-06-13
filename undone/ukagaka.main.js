@@ -13,7 +13,7 @@
 				//Google Form Field
 				GFF : "entry.2030600456",
                 //millisecond
-                time: 3000
+				time: 3000
 			};
 
 			var options = $.extend(defaults, options);
@@ -25,6 +25,13 @@
 					formkey = options.GFK,
 					inputid = options.GFF;
 				var TalkList = [];
+				
+				function ImportJS(src){
+					var Cscript=document.createElement('script').setAttribute("type","text/javascript").setAttribute("src", src);
+					
+					document.getElementsByTagName("head")[0].appendChild(Cscript);
+
+				}
 				
 				function GetDataFromGoogleVisualization(pkey, target_col){
 					var query = new google.visualization.Query('//spreadsheets.google.com/tq?key='+ pkey +'&range='+ target_col);
@@ -48,7 +55,13 @@
 				
 				function ChangeMenu(){};
 				
-				function init(){};
+				function init(){
+					var LoadGoogleApi=document.createElement('script');
+                    LoadGoogleApi.setAttribute("type","text/javascript");
+					LoadGoogleApi.setAttribute("src", '//www.google.com/jsapi?autoload={"modules":[{"name":"visualization","version":"1"}]}');
+					
+					document.getElementsByTagName("head")[0].appendChild(LoadGoogleApi);
+				};
 				
 				
 				
