@@ -1,5 +1,4 @@
-var str_json = {
-	//繁體中文字串
+{
 	"tw" : {
 		"menu" : {
 		  "title" : "選單",
@@ -29,7 +28,6 @@ var str_json = {
 		  "contain" : []
 		}
 	},
-	//英文字串
 	"en" : {
 	  "menu" : {
 		  "title" : "Menus",
