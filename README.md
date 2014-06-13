@@ -1,8 +1,6 @@
-# Web-Ukagaka Proj #
+# Ukagaka Web 計畫
+透過 Google Spreadsheet 的功能實現資料庫，並利用此資料庫作為基本喊話功能。
 
-修改與 Jquery 模組化，並且把根據 201404 新的 Google 表單做修正。
-[Demo](http://morris821028.github.io/2014/04/13/jquery-ukagaka/)
 
 ## Update ##
-
 2014/04/13
