@@ -26,7 +26,8 @@
 					inputid = options.GFF;
 				var TalkList = [];
 				var menujson = [];
-				
+				var local = [];
+				var lang;
 				function GetDataFromGoogleVisualization(pkey, target_col){
 					var query = new google.visualization.Query('//spreadsheets.google.com/tq?key='+ pkey +'&range='+ target_col);
 					
@@ -44,9 +45,10 @@
 					obj.append("<div id='U_Con_Panel'><span id='U_btn_display'>Display</span> | <span id='U_btn_menu>Menu</span></div>");
 				}
 				
-				function LoadMenuJson(){
+				function LoadMenuJson(language){
 					$.getJSON("string.json", function(JData){
-						
+					    local = JData;
+						lang = local[language] || local['en'];
 					});
 				}
 				
@@ -71,14 +73,19 @@
 				};
 				
 				function ChangeMenu(to){
+				    var tmp;
 					switch($('menu').attr('data-menu')){
-						case 'main':
+						case 'menu':
+						    tmp = lang.menu.contain + '<br>';
 							break;
 						case 'lear':
+						    tmp = lang.lear.contain + '<br>';
 							break;
 						case 'upda':
+						    tmp = lang.upda.contain + '<br>';
 							break;
 						case 'exit':
+						    tmp = lang.exit.contain + '<br>';
 							break;
 					}
 				};
