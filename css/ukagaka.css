@@ -1,0 +1,164 @@
+body {
+    background: url(img/background.jpg) no-repeat;
+}
+
+#ukagaka_controlpanel
+{
+    bottom: 0;
+    font-family: 'Comic Sans MS',font-default;
+    font-size: 1.1em;
+    position: fixed;
+    right: 0;
+    width: 50%;
+}
+#ukagaka_controlpanel img
+{
+    color: #2ca6cb;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+}
+#ukagaka_controlpanel img:hover
+{
+    moz-transition: color 0.5s;
+    ms-transition: color 0.5s;
+    opacity: .4;
+    transition: color 0.5s;
+    webkit-transition: color 0.5s;
+}
+#ukagaka_controlpanel span
+{
+    color: #f0f0f0;
+    float: right;
+    font-size: 21px;
+    width: 5%;
+}
+#ukagaka_controlpanel span:hover:before
+{
+    color: #2ca6cb;
+}
+#ukagaka_controlpanel span[title="menu"]::before,#ukagaka_controlpanel span[title="gotop"]::before
+{
+    font-family: "FontAwesome";
+}
+#ukagaka_controlpanel span[title="menu"]::before
+{
+    content: "\f03a";
+}
+#ukagaka_controlpanel span[title="gotop"]::before
+{
+    content: "\f062";
+}
+#ukagaka_menu_list span
+{
+    color: #f0f0f0;
+    font-size: 21px;
+}
+#ukagaka_menu_list span:hover:before
+{
+    color: #2ca6cb;
+}
+#ukagaka_menu_list span[title="godown"]::before,#ukagaka_menu_list span[title="music"]::before,#ukagaka_menu_list span[title="mail"]::before,#ukagaka_menu_list span[title="power"]::before,#ukagaka_menu_list span[title="learn"]::before
+{
+    font-family: "FontAwesome";
+}
+#ukagaka_menu_list span[title="godown"]::before
+{
+    content: "\f063";
+}
+#ukagaka_menu_list span[title="music"]::before
+{
+    content: "\f001";
+}
+#ukagaka_menu_list span[title="mail"]::before
+{
+    content: "\f003";
+}
+#ukagaka_menu_list span[title="power"]::before
+{
+    content: "\f011";
+}
+#ukagaka_menu_list span[title="learn"]::before
+{
+    content: "\f044";
+}
+#ukagaka_panel
+{
+    bottom: 30px;
+    position: fixed;
+    right: 0;
+    width: 30%;
+}
+#ukagaka_panel span
+{
+    padding: 5px;
+}
+#ukagaka_panel cursor pointer
+{
+    height: 0;
+}
+.ukagaka_box,.ukagaka_toc
+{
+    background: #1f1f1f;
+    bottom: 230px;
+    color: #f0f0f0;
+    font-size: 100%;
+    position: absolute;
+    right: 120px;
+    width: 40%;
+}
+.ukagaka_msg
+{
+    border: 1px solid #ccc;
+    box-shadow: 0 -1px 4px #ccc inset;
+    color: #f0f0f0;
+    font-family: 'Comic Sans MS',Georgia,"Microsoft YaHei","Times New Roman",serif;
+    padding: .5em 2% 1em;
+    webkit-box-shadow: 0 -1px 4px #ccc inset;
+    width: 100%;
+}
+.ukagaka_msg::before
+{
+    padding-right: .5em;
+}
+.ukagaka_msg span#ukagaka_menu_btn_addstring,.ukagaka_msg span#ukagaka_menu_btn_renewlist,.ukagaka_msg span#ukagaka_menu_btn_exit,.ukagaka_msg span#ukagaka_btn_menu,.ukagaka_msg span#ukagaka_addmenu_add
+{
+    display: inline;
+    margin: .1em;
+}
+.ukagaka_msg span#ukagaka_menu_btn_addstring:hover,.ukagaka_msg span#ukagaka_menu_btn_renewlist:hover,.ukagaka_msg span#ukagaka_menu_btn_exit:hover,.ukagaka_msg span#ukagaka_btn_menu:hover,.ukagaka_msg span#ukagaka_addmenu_add:hover
+{
+    color: #2ca6cb;
+}
+.ukagaka_msg span#ukagaka_menu_btn_addstring::before,.ukagaka_msg span#ukagaka_menu_btn_renewlist::before,.ukagaka_msg span#ukagaka_menu_btn_exit::before,.ukagaka_msg span#ukagaka_btn_menu::before,.ukagaka_msg span#ukagaka_addmenu_add::before
+{
+    padding-right: .5em;
+}
+.ukagaka_msg a
+{
+    color: #258fb8;
+    text-decoration: none;
+}
+.ukagaka_msg a:hover
+{
+    text-decoration: underline;
+}
+.ukagaka_img
+{
+    bottom: 0;
+    position: fixed;
+    right: 0;
+    width: 15%;
+}
+#ukagaka_stringinput >input
+{
+    width: 95%;
+}
+input::-moz-placeholder
+{
+    color: #f0f0f0;
+}
+input::-webkit-input-placeholder
+{
+    color: #f0f0f0;
+}

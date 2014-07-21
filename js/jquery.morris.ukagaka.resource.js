@@ -46,9 +46,10 @@
                 menuCancelText = o.menuCancelText,
                 menuSubmitText = o.menuSubmitText,
                 menuQueryText = o.menuQueryText;
+            ukagakaText = o.ukagakaText;
 
             var innerSettingHTML = "";
-            innerSettingHTML += "<img class='ukagaka_img' src='img/ukagaka_img4.png'></img>";
+            innerSettingHTML += "<img class='ukagaka_img' src='img/uk.png'></img>";
             innerSettingHTML += "<div class='ukagaka_box'>";
             innerSettingHTML += "<div class='ukagaka_msg' id='ukagaka_msgbox'>" + loadingText + "</div>";
             innerSettingHTML += "<div class='ukagaka_msg' id='ukagaka_menubox' style='display:none'>" + menuMainText + "<br/><br/><span id='ukagaka_menu_btn_addstring'>" + menuLearnText + "</span><span id='ukagaka_menu_btn_renewlist'>" + menuLogText + "</span><span id='ukagaka_menu_btn_exit'>" + menuExitText + "</span></div>";
@@ -60,13 +61,11 @@
             var footerMenuHTML = "";
             footerMenuHTML += "<div id='ukagaka_controlpanel'>";
             footerMenuHTML += "<input id='ukagaka_usertalk'>";
-            footerMenuHTML += "<span id='ukagaka_btn_showmenu' title='menu'></span>";
+            footerMenuHTML += "<span id='ukagaka_btn_showmenu' title='menu'></span><span id='ukagaka_btn_up' title='gotop'></span>";
             footerMenuHTML += "<div id='ukagaka_menu_list'>";
             footerMenuHTML += "<span id='ukagaka_btn_menu' title='learn'></span>";
-            footerMenuHTML += "<span id='ukagaka_btn_display' title='power'></span>";
             footerMenuHTML += "<span id='ukagaka_btn_mail' title='mail'></span>";
             footerMenuHTML += "<span id='ukagaka_btn_music' title='music'></span>";
-            footerMenuHTML += "<span id='ukagaka_btn_up' title='gotop'></span>";
             footerMenuHTML += "<span id='ukagaka_btn_down' title='godown'></span>";
             footerMenuHTML += "</div>";
             footerMenuHTML += "</div>";
@@ -102,7 +101,7 @@
                     $.ukagaka.talking[i] = JData.feed.entry[i].gsx$storedatabase.$t;
                     // console.log("talk stmt : " + talking[i]);
                 }
-                $('input#ukagaka_addstring').attr('placeholder', '目前春菜學會了' + JData.feed.entry.length + '個字彙');
+                $('input#ukagaka_addstring').attr('placeholder', ukagakaText + '學會了' + JData.feed.entry.length + '個字彙');
             });
         }
 
@@ -125,20 +124,20 @@
                             $("input#ukagaka_addstring").attr("value", "");
                             $(".ukagaka_box div").fadeOut(500);
                             $("#ukagaka_msgbox").fadeOut(500, function() {
-                                $(this).html("偽春菜學習了 !").fadeIn(1000)
+                                $(this).html(ukagakaText + "學習了 !").fadeIn(1000)
                             });
                         },
                         200: function() {
                             $("input#ukagaka_addstring").attr("value", "");
                             $(".ukagaka_box div").fadeOut(500);
                             $("#ukagaka_msgbox").fadeOut(500, function() {
-                                $(this).html("偽春菜學習了 !").fadeIn(1000)
+                                $(this).html(ukagakaText + "學習了 !").fadeIn(1000)
                             });
                         }
                     }
                 });
             } else {
-                alert("OOPS！偽春菜不接受這個字串喔！");
+                alert("OOPS！" + ukagakaText + "不接受這個字串喔！");
             }
         }
 
@@ -147,6 +146,17 @@
             var obj = $(elem);
 
             var o = options;
+
+            var loadingText = o.loadingText,
+                learnPlaceholder = o.learnPlaceholder,
+                logText = o.logText,
+                menuMainText = o.menuMainText,
+                menuLearnText = o.menuLearnText,
+                menuLogText = o.menuLogText,
+                menuExitText = o.menuExitText,
+                menuCancelText = o.menuCancelText,
+                menuSubmitText = o.menuSubmitText,
+                menuQueryText = o.menuQueryText;
 
             $("#ukagaka_usertalk").hide();
             if (navigator.userAgent.match(/Android|iPhone|iPad/i)) {
@@ -166,8 +176,6 @@
                 });
                 loadTalk(options);
             }
-
-            obj.draggable();
 
             $(window).scroll(function() {
                 if ($(this).scrollTop() > 1800) {
@@ -197,10 +205,6 @@
                         success: function(JData) {
                             $("#ukagaka_msgbox").fadeOut(500, function() {
                                 $(this).html(JData).fadeIn(1000);
-                                if (Math.random() < 0.1028) {
-                                    var imgIndex = Math.floor(Math.random() * 8);
-                                    $('.ukagaka_img').attr('src', 'img/ukagaka_img' + imgIndex + '.png');
-                                }
                             });
                         },
                         error: function(argument) {
@@ -219,8 +223,6 @@
                 $("html,body").animate({
                     scrollTop: 0
                 }, 1000);
-
-                $("#ukagaka_menu_list").toggle('slide', null, 500);
             }).on('click', "#ukagaka_btn_down", function(event) {
                 $("html,body").animate({
                     scrollTop: document.body.scrollHeight
@@ -230,23 +232,12 @@
             }).on('click', "#ukagaka_btn_showmenu", function(event) {
                 var hideElem = $('#ukagaka_menu_list');
                 hideElem.toggle('slide', null, 500);
-            }).on('click', "#ukagaka_btn_display", function(event) {
-                var hideElem = $('.ukagaka_box');
-                if (hideElem.css("display") == 'none') {
-                    $('.ukagaka_img').attr('src', 'img/ukagaka_img0.png').removeClass("ukagaka_img2");
-                    $(".ukagaka_box").show();
-                } else {
-                    $('.ukagaka_img').attr('src', 'img/ukagaka_sleep.png').addClass("ukagaka_img2");
-                    $(".ukagaka_box").hide();
-                }
             }).on('click', "#ukagaka_menu_btn_exit", function(event) {
                 $(".ukagaka_box div").fadeOut(500);
                 $("#ukagaka_msgbox").delay(500).fadeIn(500);
-                $('.ukagaka_img').attr('src', 'img/ukagaka_img0.png');
             }).on('click', "#ukagaka_btn_menu", function(event) {
                 $(".ukagaka_box div").fadeOut(500);
                 $("#ukagaka_menubox").delay(500).fadeIn(500);
-                $('.ukagaka_img').attr('src', 'img/ukagaka_img5.png');
             }).on('click', "#ukagaka_menu_btn_addstring", function(event) {
                 $(".ukagaka_box div").fadeOut(500);
                 $("#ukagaka_stringinput").delay(500).fadeIn(500);
@@ -266,15 +257,16 @@
         googleSheetField: "entry.2030600456",
         talkTime: 30000,
 
-        loadingText: "Sleep zZz",
+        ukagakaText: "史蒂芙",
+        loadingText: "Wryyyyy",
         learnPlaceholder: "default: input for learn.",
-        menuMainText: "使用選單功能&#65292;吾才不需要汝教。",
+        menuMainText: "使用選單功能&#65292; 為什麼要聽你的！",
         menuLearnText: "$ 學習",
         menuLogText: "$ 日誌",
         menuExitText: "$ 結束",
         menuCancelText: "$ 取消",
         menuSubmitText: "$ 確認",
-        menuQueryText: "請輸入讓偽春菜學的句子<br/><br/>",
+        menuQueryText: "請輸入想要讓史蒂芙學的話<br/><br/>",
         logText: "更新日誌<br/><br/>Morris 修正<br/><br/>找尋 AI 系統<br/>找尋 AI 對話<br/>",
     };
 
