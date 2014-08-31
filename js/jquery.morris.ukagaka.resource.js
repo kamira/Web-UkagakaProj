@@ -1,4 +1,4 @@
-(function($) {
+﻿(function($) {
     $.fn.extend({
         /*
             $('selector').myplugin( { key: 'value' } );
@@ -48,30 +48,33 @@
                 menuQueryText = o.menuQueryText;
             ukagakaText = o.ukagakaText;
 
-            var innerSettingHTML = "";
-            innerSettingHTML += "<img class='ukagaka_img' src='img/uk.png'></img>";
-            innerSettingHTML += "<div class='ukagaka_box'>";
-            innerSettingHTML += "<div class='ukagaka_msg' id='ukagaka_msgbox'>" + loadingText + "</div>";
-            innerSettingHTML += "<div class='ukagaka_msg' id='ukagaka_menubox' style='display:none'>" + menuMainText + "<br/><br/><span id='ukagaka_menu_btn_addstring'>" + menuLearnText + "</span><span id='ukagaka_menu_btn_renewlist'>" + menuLogText + "</span><span id='ukagaka_menu_btn_exit'>" + menuExitText + "</span></div>";
-            innerSettingHTML += "<div class='ukagaka_msg' id='ukagaka_stringinput' style='display:none'>" + menuQueryText + "<input id='ukagaka_addstring' type='text' placeholder='" + learnPlaceholder + "'/><span id='ukagaka_addmenu_add'>" + menuSubmitText + "</span><span id='ukagaka_btn_menu'>" + menuCancelText + "</span></div>";
-            innerSettingHTML += "<div class='ukagaka_msg' id='ukagaka_renewlist' style='display:none'>" + logText + "<span id='ukagaka_btn_menu'>" + menuCancelText + "</span></div>";
-            innerSettingHTML += "<input id='ukagaka_sheetfield' type='hidden' value='" + sheetfield + "'>";
-            innerSettingHTML += "</div>";
-
             var footerMenuHTML = "";
             footerMenuHTML += "<div id='ukagaka_controlpanel'>";
             footerMenuHTML += "<input id='ukagaka_usertalk'>";
             footerMenuHTML += "<span id='ukagaka_btn_showmenu' title='menu'></span><span id='ukagaka_btn_up' title='gotop'></span>";
+            footerMenuHTML += "<span id='ukagaka_btn_down' title='godown'></span>";
             footerMenuHTML += "<div id='ukagaka_menu_list'>";
             footerMenuHTML += "<span id='ukagaka_btn_menu' title='learn'></span>";
             footerMenuHTML += "<span id='ukagaka_btn_mail' title='mail'></span>";
             footerMenuHTML += "<span id='ukagaka_btn_music' title='music'></span>";
-            footerMenuHTML += "<span id='ukagaka_btn_down' title='godown'></span>";
             footerMenuHTML += "</div>";
             footerMenuHTML += "</div>";
 
+            var dialogHTML = "";
+            dialogHTML += "<div class='ukagaka_box'>";
+            dialogHTML += "<div class='ukagaka_msg' id='ukagaka_msgbox'>" + loadingText + "</div>";
+            dialogHTML += "<div class='ukagaka_msg' id='ukagaka_menubox' style='display:none'>" + menuMainText + "<br/><br/><span id='ukagaka_menu_btn_addstring'>" + menuLearnText + "</span><span id='ukagaka_menu_btn_renewlist'>" + menuLogText + "</span><span id='ukagaka_menu_btn_exit'>" + menuExitText + "</span></div>";
+            dialogHTML += "<div class='ukagaka_msg' id='ukagaka_stringinput' style='display:none'>" + menuQueryText + "<input id='ukagaka_addstring' type='text' placeholder='" + learnPlaceholder + "'/><span id='ukagaka_addmenu_add'>" + menuSubmitText + "</span><span id='ukagaka_btn_menu'>" + menuCancelText + "</span></div>";
+            dialogHTML += "<div class='ukagaka_msg' id='ukagaka_renewlist' style='display:none'>" + logText + "<span id='ukagaka_btn_menu'>" + menuCancelText + "</span></div>";
+            dialogHTML += "<input id='ukagaka_sheetfield' type='hidden' value='" + sheetfield + "'>";
+            dialogHTML += "</div>";
+            dialogHTML += "<img class='ukagaka_img' src='img/uk.png'></img>";
+
+            var innerSettingHTML = "";
+            innerSettingHTML += "<input type=\"checkbox\" checked><label data-expanded=\"Stephanie(o)\" data-collapsed=\"Stephanie(x)\">" + footerMenuHTML + "</label>";
+            innerSettingHTML += "<div class=\"chat-box-content\">" + dialogHTML + "</div>";
+
             obj.append(innerSettingHTML);
-            obj.after(footerMenuHTML);
 
             /* $.ajax({
                     type: 'GET',
@@ -101,15 +104,24 @@
                     $.ukagaka.talking[i] = JData.feed.entry[i].gsx$storedatabase.$t;
                     // console.log("talk stmt : " + talking[i]);
                 }
+                $("#ukagaka_msgbox").fadeOut(500, function() {
+                    $(this).html($.ukagaka.talking[Math.floor(Math.random() * $.ukagaka.talking.length)]).fadeIn(500);
+                });
                 $('input#ukagaka_addstring').attr('placeholder', ukagakaText + '學會了' + JData.feed.entry.length + '個字彙');
             });
         }
 
         function sendLearnText(options) {
+            var o = options;
+
+            var key = o.googleKey,
+                sheet = o.googleSheet,
+                formkey = o.googleFormkey,
+                sheetfield = o.googleSheetField;
+
             var add = $("input#ukagaka_addstring").val(),
                 googleSheetField = $('input#ukagaka_sheetfield').val(),
                 sendData = {};
-
             sendData[googleSheetField] = add;
             if (!((add.length <= 1) || add.indexOf('script') > -1 || add.indexOf('body') > -1 ||
                 add.indexOf('style') > -1 || add.indexOf('link') > -1 || add.indexOf('iframe') > -1 || add.indexOf('head') > -1 ||
@@ -168,9 +180,12 @@
 
                     function talkingbox() {
                         if ($("#ukagaka_msgbox").css("display") != 'none' && $.ukagaka.talkValid == true) {
-                            $("#ukagaka_msgbox").fadeOut(500, function() {
-                                $(this).html($.ukagaka.talking[Math.floor(Math.random() * $.ukagaka.talking.length)]).fadeIn(500)
-                            });
+                            $("#ukagaka_msgbox").html(loadingText);
+                            setTimeout(function() {
+                                $("#ukagaka_msgbox").fadeOut(500, function() {
+                                    $(this).html($.ukagaka.talking[Math.floor(Math.random() * $.ukagaka.talking.length)]).fadeIn(500)
+                                });
+                            }, 500);
                         }
                     }
                 });
@@ -217,7 +232,7 @@
             });
 
             $(document).on('click', "#ukagaka_btn_mail", function(event) {
-                $("#ukagaka_usertalk").toggle('slide', null, 500)
+                // $("#ukagaka_usertalk").toggle('slide', null, 500)
                 $("#ukagaka_menu_list").toggle('slide', null, 500);
             }).on('click', "#ukagaka_btn_up", function(event) {
                 $("html,body").animate({
@@ -227,8 +242,6 @@
                 $("html,body").animate({
                     scrollTop: document.body.scrollHeight
                 }, 1000);
-
-                $("#ukagaka_menu_list").toggle('slide', null, 500);
             }).on('click', "#ukagaka_btn_showmenu", function(event) {
                 var hideElem = $('#ukagaka_menu_list');
                 hideElem.toggle('slide', null, 500);
@@ -255,10 +268,10 @@
         googleFormkey: '1xADUIiBq1ksH7lxwSch1Nz_p2gSxdJttmv5OJOxJye0',
         googleSheet: "od6",
         googleSheetField: "entry.2030600456",
-        talkTime: 30000,
+        talkTime: 15000,
 
         ukagakaText: "史蒂芙",
-        loadingText: "Wryyyyy",
+        loadingText: '<div class="spinner"><div class="bounce1"></div><div class="bounce2"></div><div class="bounce3"></div></div>',
         learnPlaceholder: "default: input for learn.",
         menuMainText: "使用選單功能&#65292; 為什麼要聽你的！",
         menuLearnText: "$ 學習",
