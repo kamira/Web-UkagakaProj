@@ -7,13 +7,10 @@
 
 ## Demo ##
 
-![demo0](/readme_img/demo0.png)
-![demo1](/readme_img/demo1.png)
-![demo2](/readme_img/demo2.png)
-![demo3](/readme_img/demo3.png)
-![demo4](/readme_img/demo4.png)
-![demo5](/readme_img/demo5.png)
+![demo0](/readme_img/demo0.PNG)
+![demo1](/readme_img/demo1.PNG)
+![demo2](/readme_img/demo2.PNG)
 
 ## Update ##
 
-2014/04/13
+2014/08/31
