@@ -111,11 +111,7 @@
         }
         
         function renderPlayer(){
-            $("#webUkagakaMusic").html('<audio controls id="ukagakaPlayer">
-                                            <source src="" type="audio/ogg">
-                                            <source src="" type="audio/mpeg">
-                                             您的瀏覽器不支援Audio元素
-                                        </audio>');
+            $("#webUkagakaMusic").html('<audio controls id="ukagakaPlayer"><source src="" type="audio/ogg"><source src="" type="audio/mpeg">您的瀏覽器不支援Audio元素</audio>');
             $("#ukagakaPlayer").onended = function() {
                 playerNext();
             };
@@ -138,6 +134,7 @@
             
             for(var i = 0; i < _target.length ; i++ )
                 _target[i].src(_nextSrc);
+        }
     }
 
 })
