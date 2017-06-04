@@ -98,6 +98,46 @@
             });
             */
         }
+        
+        function initPlayer(opts){
+            switch(opts){
+                case 0:
+                    return 0;
+                    break;
+                case 1:
+                    renderPlayer();
+                    break;
+             }
+        }
+        
+        function renderPlayer(){
+            $("#webUkagakaMusic").html('<audio controls id="ukagakaPlayer">
+                                            <source src="" type="audio/ogg">
+                                            <source src="" type="audio/mpeg">
+                                             您的瀏覽器不支援Audio元素
+                                        </audio>');
+            $("#ukagakaPlayer").onended = function() {
+                playerNext();
+            };
+                                       
+            /*window.setInterval(function(){
+ 		        var str = '';
+ 		        if(player[currentTime] == player[duration])
+                    nextMusic();
+ 		        document.getElementById('panel').innerHTML = str;
+ 	            }, 1000);*/
+             
+        }
+        
+        function playerNext(){
+            var _target = $("#ukagakaPlayer > source");
+            var _currentSrc = _target[0].src();
+            var _nextSrc = _target[0].src();
+            
+            while( _currentSrc == _nextSrc ){ _nextSrc = playerList[playerList.length * Math.random()]; }
+            
+            for(var i = 0; i < _target.length ; i++ )
+                _target[i].src(_nextSrc);
     }
 
 })
